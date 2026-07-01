@@ -23,7 +23,6 @@
   <link rel="apple-touch-icon" href="assets/images/ico_PALACE_LOGO.png">
 </head>
 <body>
-<div class="cursor-follower" id="cursorFollower"><img src="assets/images/ico_PALACE_LOGO.png" alt=""></div>
 
 <header>
   <a href="index.html" class="header-logo">
@@ -149,38 +148,6 @@
     },{threshold:0.15});
     fadeEls.forEach(function(el){obs.observe(el);});
   }
-
-  // Cursor follower (PC only)
-  (function(){
-    var cf = document.getElementById('cursorFollower');
-    if (!cf || matchMedia('(pointer: coarse)').matches) return;
-    var x = 0, y = 0, tx = 0, ty = 0;
-    document.addEventListener('mousemove', function(e){
-      tx = e.clientX; ty = e.clientY;
-      cf.classList.add('visible');
-    });
-    document.addEventListener('mouseleave', function(){ cf.classList.remove('visible'); });
-    document.addEventListener('mouseover', function(e){
-      var t = e.target;
-      if (t.closest && t.closest('a, button, .cta-tel-block, .service-card, .strength-item, .header-tel-block')) {
-        cf.classList.add('hover-active');
-      }
-    });
-    document.addEventListener('mouseout', function(e){
-      var t = e.target;
-      if (t.closest && t.closest('a, button, .cta-tel-block, .service-card, .strength-item, .header-tel-block')) {
-        cf.classList.remove('hover-active');
-      }
-    });
-    function tick(){
-      x += (tx - x) * 0.18;
-      y += (ty - y) * 0.18;
-      cf.style.left = x + 'px';
-      cf.style.top = y + 'px';
-      requestAnimationFrame(tick);
-    }
-    tick();
-  })();
 </script>
 </body>
 </html>
